@@ -40,14 +40,14 @@ export const getUser = (userId) => ({
 export const getUser = (userId) => ({
     callApi: {
         types: [...],
-        inject: 'UserService',
+        serviceName: 'UserService',
         exec: (UserService) => UserService.getUser(userId)
     }
 });
 ```
 
 # Шаг 3
-Напрашивается очевидное улучшение - разрешить передавать в `inject` не только строку, но и массив. Это позволит инжектить в функцию любые зависимости. Например так:
+Теперь то, что мы пишем в поле `serviceName` инжектится в нашу функцию. Логично переименовать его в `inject`. Теперь напрашивается очевидное улучшение - добавить возможность передавать в `inject` не только строку, но и массив. Это позволит инжектить в функцию любые зависимости. Например так:
 ```javascript
 export const getUser = (userId) => ({
     callApi: {
