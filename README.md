@@ -56,9 +56,9 @@ export const getUser = (userId) => ({
     callApi: {
         types: [...],
         inject: ['UserService', 'UserFormatter'],
+        
         exec: (UserService, UserFormatter) =>
-            UserService.getUser(userId)
-                .then(UserFormatter.format) // но лучше это делать в самом UserService
+            UserService.getUser(userId).then(UserFormatter.format) // но лучше это делать в самом UserService
     }
 });
 ```
