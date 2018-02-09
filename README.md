@@ -79,15 +79,29 @@ export const getUser = (userId) => callApi({
 Код остался читаемым, и стал чуть более компактным. При этом если будет необходимо поменять внутреннюю структуру объекта, это можно будет сделать в одном месте.
 
 
-## Шаг 5
-Inject middleware
+## Шаг 5. thunk-middleware на стероидах
 
 ```javascript
 import { inject } from 'core/redux-inject';
 
-const userFetchStart = () => ({ type: USER_FETCH_START });
-const userFetchSuccess = (user) => ({ type: USER_FETCH_SUCCESS, payload: user });
-const userFetchError = (error) => ({ type: USER_FETCH_ERROR, payload: error });
+// тут реализация userFetchStart(), userFetchSuccess(), userFetchError()
+
+export const getUser = (userId) => callApi({
+    inject: 'UserDataService',
+    exec: (dataService) => (dispatch) => {
+        dispatch(userFetchStart());
+        
+        dataService.getUser(userId)
+            .then((user) => dispatch(userFetchSuccess(user)))
+            .catch((error) => dispatch(userFetchError(error)));
+    }
+});
+```
+
+```javascript
+import { inject } from 'core/redux-inject';
+
+// тут реализация userFetchStart(), userFetchSuccess(), userFetchError()
 
 export const getUser = (userId) => inject('UserDataService',
     (dataService) => (dispatch) => {
