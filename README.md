@@ -72,6 +72,8 @@ export const getUser = (userId) => callApi({
     exec: (dataService) => dataService.getUser(userId)
 });
 ```
+Код остался читаемым, и стал чуть более компактным. При этом если будет необходимо поменять внутреннюю структуру объекта, это можно будет сделать в одном месте.
+
 
 # Шаг 5
 Inject middleware
