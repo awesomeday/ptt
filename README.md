@@ -1,7 +1,7 @@
 # Шаг 0
 Наивный подход
 ```javascript
-export const getUser = (userId) => {
+export const getUser = (userId) => ({
     callApi: {
         types: [USER_FETCH_START, USER_FETCH_SUCCESS, USER_FETCH_ERROR],
         method: 'get',
@@ -10,32 +10,32 @@ export const getUser = (userId) => {
             params: { userId }
         }
     }
-};
+});
 ```
 
 # Шаг 1
 Сервис
 ```javascript
-export const getUser = (userId) => {
+export const getUser = (userId) => ({
     callApi: {
-        types: [USER_FETCH_START, USER_FETCH_SUCCESS, USER_FETCH_ERROR],
+        types: [...],
         serviceName: 'UserService',
         method: 'getUser',
         params: [userId]
     }
-};
+});
 ```
 
 # Шаг 2
 Вызов функции
 ```javascript
-export const getUser = (userId) => {
+export const getUser = (userId) => ({
     callApi: {
-        types: [USER_FETCH_START, USER_FETCH_SUCCESS, USER_FETCH_ERROR],
+        types: [...],
         inject: 'UserService',
         exec: (UserService) => UserService.getUser(userId)
     }
-};
+});
 ```
 
 # Шаг 3
