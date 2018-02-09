@@ -63,8 +63,7 @@ export const getUser = (userId) => ({
 
 
 ## Шаг 4. Сокрытие реализации
-__На этом шаге мы избавим клиентский код от необходимости знать структуру создаваемого объекта__
-Этот способ создания объекта несколько многословен и в какой-то мере является нарушением инкапсуляции: если бы наш middleware поставлялся как сторонняя библиотека, получалось бы, что мы используем особенности внутренней реализации. Было бы лучше, если бы сама библиотека предоставляла функцию-фабрику, которая конструировала бы для нас объекты с нужной структурой.
+Такой способ создания объекта несколько многословен и в какой-то мере является нарушением инкапсуляции: если бы наш middleware поставлялся как сторонняя библиотека, получалось бы, что мы используем особенности внутренней реализации. Было бы лучше, если бы сама библиотека предоставляла функцию-фабрику, которая конструировала бы для нас объекты с нужной структурой.
 
 Клиентский код мог бы выглядеть так:
 ```javascript
@@ -84,7 +83,7 @@ export const getUser = (userId) => callApi({
 ```javascript
 import { inject } from 'core/redux-inject';
 
-// тут реализация userFetchStart(), userFetchSuccess(), userFetchError()
+// где-то тут реализация userFetchStart(), userFetchSuccess(), userFetchError()
 
 export const getUser = (userId) => callApi({
     inject: 'UserDataService',
@@ -101,7 +100,7 @@ export const getUser = (userId) => callApi({
 ```javascript
 import { inject } from 'core/redux-inject';
 
-// тут реализация userFetchStart(), userFetchSuccess(), userFetchError()
+// где-то тут реализация userFetchStart(), userFetchSuccess(), userFetchError()
 
 export const getUser = (userId) => inject('UserDataService',
     (dataService) => (dispatch) => {
