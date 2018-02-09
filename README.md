@@ -85,9 +85,7 @@ const userFetchStart = () => ({ type: USER_FETCH_START });
 const userFetchSuccess = (user) => ({ type: USER_FETCH_SUCCESS, payload: user });
 const userFetchError = (error) => ({ type: USER_FETCH_ERROR, payload: error });
 
-export const getUser = (userId) => inject(
-    'UserDataService',
-    
+export const getUser = (userId) => inject('UserDataService',
     (dataService) => (dispatch) => {
         dispatch(userFetchStart());
         
