@@ -3,7 +3,11 @@
 ```javascript
 export const getUser = (userId) => ({
     callApi: {
-        types: [USER_FETCH_START, USER_FETCH_SUCCESS, USER_FETCH_ERROR],
+        types: [
+            ActionTypes.USER_FETCH_START, 
+            ActionTypes.USER_FETCH_SUCCESS, 
+            ActionTypes.USER_FETCH_ERROR
+        ],
         method: 'get',
         url: '/user',
         options: {
@@ -18,7 +22,11 @@ export const getUser = (userId) => ({
 ```javascript
 export const getUser = (userId) => ({
     callApi: {
-        types: [...],
+        types: [
+            ActionTypes.USER_FETCH_START, 
+            ActionTypes.USER_FETCH_SUCCESS, 
+            ActionTypes.USER_FETCH_ERROR
+        ],
         serviceName: 'UserService',
         method: 'getUser',
         params: [userId]
